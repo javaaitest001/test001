@@ -7,9 +7,17 @@ from PIL import Image
 # VGG16 모델 로드 함수 (캐싱을 통해 앱 실행 시 한 번만 로드)
 @st.cache_resource
 def load_vgg16_model():
-    model_path = 'best_vgg16.keras'  # VGG16 모델 파일 경로
-    model = tf.keras.models.load_model(model_path)
+    # 구글 드라이브 파일 ID. 위 1단계에서 복사한 ID를 여기에 붙여넣으세요.
+    file_id = 'https://drive.google.com/file/d/1UMqaCmS2ahz9SPDgV5PrW1ztUcyErSsw/view?usp=sharing' 
+    output_path = 'best_vgg16.keras'
+
+    # gdown을 사용하여 구글 드라이브에서 파일 다운로드
+    # 이미 다운로드된 경우 다시 다운로드하지 않음 (cached=False 옵션을 통해 제어 가능)
+    gdown.download(id=file_id, output=output_path, quiet=False)
+
+    model = tf.keras.models.load_model(output_path)
     return model
+
 
 # 이미지 전처리 함수
 def preprocess_image_for_vgg16(image):
