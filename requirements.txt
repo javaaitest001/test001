@@ -2,3 +2,4 @@ streamlit
 tensorflow>=2.15
 numpy
 Pillow
+gdown
