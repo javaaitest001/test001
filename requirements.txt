@@ -1,7 +1,9 @@
 streamlit
-tensorflow>=2.15
+torch
+torchvision
 numpy
 Pillow
-gdown
 opencv-python
+gdown
+torch-cam
 
