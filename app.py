@@ -28,7 +28,7 @@ def load_keras_model():
     """
     # *** 여기에 구글 드라이브 파일 ID를 입력하세요. ***
     # 예시: '1UMqaCmS2ahz9SPDgV5PrW1ztUcyErSsw'
-    file_id = 'https://drive.google.com/file/d/19OGKeMEFT_pDNb-FXTVb4Yg7sKBvf1A8/view?usp=sharing'
+    file_id = '19OGKeMEFT_pDNb-FXTVb4Yg7sKBvf1A8'
     output_path = 'best_densenet121.keras'
     
     # 파일이 존재하지 않을 경우에만 다운로드
