@@ -15,7 +15,7 @@ import os # 파일 존재 여부 확인을 위해 필요
 
 # Grad-CAM에 사용할 마지막 합성곱 레이어 이름 설정
 # DenseNet121의 경우 보통 'relu' 또는 'conv5_block16_2_conv' 입니다.
-LAST_CONV_LAYER_NAME = "relu"
+LAST_CONV_LAYER_NAME = "densenet121"
 
 st.set_page_config(page_title="COVID-19 X-ray Classifier", layout="wide")
 
