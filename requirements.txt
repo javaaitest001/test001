@@ -2,7 +2,7 @@ streamlit
 numpy
 Pillow
 opencv-python
-gdown==4.2
-torch==2.3.0
-torchvision==0.18.0
-torch-cam==0.4.0
+gdown
+torch==2.3.0+cpu
+torchvision==0.18.0+cpu
+torch-cam
