@@ -1,4 +1,3 @@
-
 import streamlit as st
 import tensorflow as tf
 from tensorflow import keras
@@ -12,7 +11,7 @@ import cv2 # OpenCV
 # ====================================================================
 
 # 모델 경로를 'checkpoints' 폴더 안으로 정확히 지정합니다.
-MODEL_PATH = "checkpoints/best_densenet121.keras"
+MODEL_PATH = "best_densenet121.keras"
 # DenseNet121의 마지막 활성화 레이어 이름입니다.
 LAST_CONV_LAYER_NAME = "relu"
 
@@ -142,14 +141,9 @@ if model is not None:
             with st.spinner('모델이 이미지를 분석 중입니다...'):
                 # 예측 수행
                 prediction = model.predict(processed_img_for_pred)[0][0]
-                if prediction >= 0.5:
-                    class_label = "Positive"
-                    probability = prediction * 100
-                else:
-                    class_label = "Negative"
-                    probability = (1 - prediction) * 100
-                
-                result_text = f"**{class_label}**일 확률이 **{probability:.2f}%** 입니다."
+                is_positive = prediction > 0.5
+                class_names = ['Negative', 'Positive']
+                result_text = f"**{class_names[int(is_positive)]}**일 확률이 **{prediction*100:.2f}%** 입니다."
 
                 # Grad-CAM 생성
                 heatmap = make_gradcam_heatmap(processed_img_for_gradcam, model, LAST_CONV_LAYER_NAME)
