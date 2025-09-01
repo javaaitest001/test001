@@ -12,7 +12,7 @@ import cv2 # OpenCV
 # ====================================================================
 
 # 모델 경로를 'checkpoints' 폴더 안으로 정확히 지정합니다.
-MODEL_PATH = "best_densenet121.keras"
+MODEL_PATH = "checkpoints/best_densenet121.keras"
 # DenseNet121의 마지막 활성화 레이어 이름입니다.
 LAST_CONV_LAYER_NAME = "relu"
 
