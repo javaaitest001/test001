@@ -142,16 +142,22 @@ if model is not None:
                 # 예측 수행
                 prediction = model.predict(processed_img_for_pred)[0][0]
 
-                # --- 이 부분이 수정되었습니다 ---
+                # --- 이 부분이 수정되었습니다: 확률과 클래스 라벨을 올바르게 매핑 ---
+                # 모델은 Normal(라벨 1)일 확률을 출력합니다.
+                # Normal일 확률이 0.5보다 높으면 Negative로 판단합니다.
                 if prediction >= 0.5:
-                    class_label = "Positive"
+                    # Normal일 확률이 높으므로 'Negative'로 분류합니다.
+                    class_label = "Negative"
+                    # 확률은 Normal일 확률인 prediction을 그대로 사용합니다.
                     probability = prediction * 100
                 else:
-                    class_label = "Negative"
+                    # Normal일 확률이 낮으므로 'Positive' (Covid-19)로 분류합니다.
+                    class_label = "Positive"
+                    # 확률은 (1 - prediction)을 사용합니다.
                     probability = (1 - prediction) * 100
                 
                 result_text = f"**{class_label}**일 확률이 **{probability:.2f}%** 입니다."
-                # ---------------------------------
+                # ---------------------------------------------------------------------
 
                 # Grad-CAM 생성
                 heatmap = make_gradcam_heatmap(processed_img_for_gradcam, model, LAST_CONV_LAYER_NAME)
